@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/propertyguru/eslint-plugin-pg-rules/issues"
   },
-  "homepage": "https://github.com/propertyguru/eslint-plugin-pg-rules#readme"
+  "homepage": "https://github.com/propertyguru/eslint-plugin-pg-rules#readme",
+  "dependencies": {
+    "verb-corpus": "^3.5.0"
+  }
 }
