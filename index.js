@@ -1,3 +1,11 @@
-/**
- * Main entry point for eslint ecosystem.
- */
+const { functionNameRule } = require('./rules');
+
+const eslintRuleDefinitions = {
+  rules: {
+    [functionNameRule.name]: {
+      create: functionNameRule.create,
+    },
+  },
+};
+
+module.exports = eslintRuleDefinitions;

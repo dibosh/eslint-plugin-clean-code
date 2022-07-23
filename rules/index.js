@@ -1,3 +1,5 @@
-/**
- * All the custom rules will be exported from here
- */
+const functionNameRule = require('./function-name');
+
+module.exports = {
+  functionNameRule,
+};
