@@ -1,7 +1,7 @@
 {
-  "name": "eslint-plugin-clean-code",
+  "name": "eslint-plugin-core-practices",
   "version": "0.1.0",
-  "description": "Custom lint rules for javascript projects to enforce clean coding practices",
+  "description": "Custom lint rules for javascript projects to enforce core coding practices",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,8 +11,9 @@
   "keywords": [
     "eslint",
     "eslintplugin",
-    "cleancode",
-    "javascript"
+    "clean code",
+    "javascript",
+    "core practices"
   ],
   "dependencies": {
     "verb-corpus": "^3.5.0"
@@ -20,10 +21,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dibosh/eslint-plugin-clean-code.git"
+    "url": "git+https://github.com/dibosh/eslint-plugin-core-practices.git"
   },
   "bugs": {
-    "url": "https://github.com/dibosh/eslint-plugin-clean-code/issues"
+    "url": "https://github.com/dibosh/eslint-plugin-core-practices/issues"
   },
-  "homepage": "https://github.com/dibosh/eslint-plugin-clean-code#readme"
+  "homepage": "https://github.com/dibosh/eslint-plugin-core-practices#readme"
 }
