@@ -1,4 +1,4 @@
-const { programming: verbs } = require('verb-corpus');
+const { complete: verbs } = require('verb-corpus');
 
 const whitelist = [
   'did',
@@ -69,12 +69,17 @@ const validateVerbPrefix = (fnName, extraWhitelist, extraBlacklist) => {
 };
 
 const isReactComponentType = (fnBody) => {
-  const returnStatement = fnBody.filter((item) => item.type === 'ReturnStatement');
-  if (!returnStatement.length) {
-    return false;
+  let isComponent = false;
+  if (fnBody.type === 'JSXElement') {
+    isComponent = true;
   }
 
-  return returnStatement[0].argument.type === 'JSXElement';
+  if (fnBody.type === 'BlockStatement') {
+    const returnStatement = fnBody.body.filter((item) => item.type === 'ReturnStatement');
+    isComponent = Boolean(returnStatement.length) && returnStatement[0].argument.type === 'JSXElement';
+  }
+
+  return isComponent;
 };
 
 module.exports = {

@@ -2,7 +2,8 @@ const { isReactComponentType, validateVerbPrefix } = require('../utils/function'
 
 function checkRule(context, node, fnName, fnBody) {
   if (!isReactComponentType(fnBody)) {
-    const { isVerb, prefix } = validateVerbPrefix(fnName);
+    const { whitelist = [], blacklist = [] } = context.options[0] || {};
+    const { isVerb, prefix } = validateVerbPrefix(fnName, whitelist, blacklist);
 
     if (!isVerb) {
       context.report({
@@ -22,22 +23,22 @@ const create = function (context) {
   return {
     MethodDefinition(node) {
       if (node.kind === 'method') {
-        checkRule(context, node, node.key.name, node.value.body.body);
+        checkRule(context, node, node.key.name, node.value.body);
       }
     },
     FunctionDeclaration(node) {
       if (node.type === 'FunctionDeclaration') {
-        checkRule(context, node, node.id.name, node.body.body);
+        checkRule(context, node, node.id.name, node.body);
       }
     },
     VariableDeclarator(node) {
       if (node.init && ['FunctionExpression', 'ArrowFunctionExpression'].includes(node.init.type)) {
-        checkRule(context, node, node.id.name, node.init.body.body);
+        checkRule(context, node, node.id.name, node.init.body);
       }
     },
     PropertyDefinition(node) {
-      if (['FunctionExpression', 'ArrowFunctionExpression'].includes(node.value.type)) {
-        checkRule(context, node, node.key.name, node.value.body.body);
+      if (node.value && node.value.type && ['FunctionExpression', 'ArrowFunctionExpression'].includes(node.value.type)) {
+        checkRule(context, node, node.key.name, node.value.body);
       }
     },
   };
